@@ -1,0 +1,10 @@
+link {
+  text-decoration: none;
+  color: wheat;
+}
+.btn-bar {
+  background-color: transparent;
+  border: none;
+  width: 50%;
+  text-transform: capitalize;
+}

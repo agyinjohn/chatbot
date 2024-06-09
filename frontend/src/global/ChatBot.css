@@ -1,0 +1,122 @@
+/* Chatbot container */
+
+/* Chat display area */
+.chat-display {
+  flex: 1;
+  padding: 20px;
+  background: transparent;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Chat message wrapper */
+.chat-message-wrapper {
+  display: flex;
+  align-items: flex-end; /* Adjust alignment to bottom */
+  margin: 10px 0;
+}
+
+.chat-message-wrapper.user {
+  justify-content: flex-end;
+}
+
+.chat-message-wrapper.bot {
+  justify-content: flex-start;
+}
+
+/* Chat message styling */
+.chat-message {
+  margin: 0 10px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  max-width: 70%;
+  word-wrap: break-word;
+  line-height: 1.5;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-message.user {
+  background: #007bff;
+  color: #ffffff;
+  border-bottom-right-radius: 5px;
+}
+
+.chat-message.bot {
+  background: #e4e6eb;
+  color: #000000;
+  border-bottom-left-radius: 5px;
+}
+
+/* Avatar styling */
+.chat-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  border: 2px solid wheat;
+  margin: 0 10px;
+  align-self: flex-end; /* Align avatar to the bottom */
+}
+
+/* Message content styling */
+.message-content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Timestamp styling */
+.message-time {
+  font-size: 12px;
+  color: black;
+  margin-top: 5px;
+  text-align: right;
+  align-self: flex-end;
+}
+
+/* Chat input area */
+.chat-input {
+  display: flex;
+  padding: 10px;
+  background: #fff;
+  border-radius: 20px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 16px;
+}
+
+.chat-input button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background: #007bff;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.chat-input button:hover {
+  background: #0056b3;
+}
+
+.chat-display::-webkit-scrollbar {
+  width: 0px; /* Remove scrollbar space */
+  background: transparent; /* Optional: just to be sure */
+}
+
+/* For Firefox */
+.chat-display {
+  scrollbar-width: none; /* Hide scrollbar */
+}
+
+.chat-display::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0);
+}
