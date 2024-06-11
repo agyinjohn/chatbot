@@ -9,6 +9,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  // const [redirect, setIsLoading] = useState(false);
   const onsubmitForm = async (ev) => {
     ev.preventDefault();
     try {
@@ -50,7 +51,7 @@ const Login = () => {
   // const colors = tokens(theme.palette.mode);
 
   if (redirect) {
-    return <Navigate to={"/"} />;
+    return <Navigate to={"/chatbot"} />;
   }
 
   return (
@@ -100,7 +101,7 @@ const Login = () => {
                     height={25}
                     color="white"
                   />
-                  <p>Sign in with Facebook</p>
+                  <p> Sign in with Facebook</p>
                 </div>
               </button>
               <button

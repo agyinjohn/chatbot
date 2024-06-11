@@ -1,7 +1,7 @@
 // import { useTheme } from "@mui/material";
 import { Box } from "@mui/material";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 // import { tokens } from "./theme";
 import { useState } from "react";
 // import { FacebookRounded } from "@mui/icons-material/FacebookRounded";
@@ -9,6 +9,7 @@ import "./Login.css";
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [redirect, setRedirect] = useState(false);
 
   async function RegisterUser(ev) {
     ev.preventDefault();
@@ -27,6 +28,7 @@ const Register = () => {
       setEmail("");
       setPassword("");
       alert("Registration was successful");
+      setRedirect(true);
     } catch (error) {
       alert(` ${error}`);
     }
@@ -46,6 +48,9 @@ const Register = () => {
 
   // const theme = useTheme();
   // const colors = tokens(theme.palette.mode);
+  if (redirect) {
+    return <Navigate to="/login" />;
+  }
   return (
     <div>
       <Box

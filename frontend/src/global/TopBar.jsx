@@ -3,13 +3,13 @@ import { Box, IconButton, useTheme } from "@mui/material";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import { ColorModeContext, tokens } from "./theme";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import "./Toolbar.css";
 // import { ColorModeContext, tokens } from "src/theme";
 
 export default function TopBar({ setIsAuthenticated }) {
   const [selected, setSelected] = useState(null);
-
+  const [redirect, setRedirect] = useState(false);
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
@@ -20,6 +20,10 @@ export default function TopBar({ setIsAuthenticated }) {
   function logout() {
     localStorage.removeItem("AuthToken");
     setIsAuthenticated(false);
+    setRedirect(true);
+    if (redirect) {
+      return <Navigate to="/login" />;
+    }
   }
 
   return (

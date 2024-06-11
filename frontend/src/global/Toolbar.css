@@ -3,8 +3,14 @@ link {
   color: wheat;
 }
 .btn-bar {
-  background-color: transparent;
+  background-color: yellow;
   border: none;
+  color: firebrick;
+  height: 55%;
   width: 50%;
+  font-weight: bolder;
+  text-align: center;
+  border-radius: 5px;
+  align-self: center;
   text-transform: capitalize;
 }

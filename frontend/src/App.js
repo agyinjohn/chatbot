@@ -28,24 +28,17 @@ function App() {
         <CssBaseline />
         <div className="app">
           <main className="content">
-            {isAuthenticated && (
-              <Topbar setIsAuthenticated={setIsAuthenticated} />
-            )}
             <AuthContextProvider>
               <Routes>
+                <Route index path={"/"} element={<Login />} />
+                <Route path="/register" element={<Register />} />
                 <Route
-                  index
-                  path={"/login"}
-                  element={isAuthenticated ? <Dashboard /> : <Login />}
+                  path="/chatbot"
+                  element={
+                    <Dashboard setIsAuthenticated={setIsAuthenticated} />
+                  }
                 />
-                <Route
-                  path="/register"
-                  element={isAuthenticated ? <Dashboard /> : <Register />}
-                />
-                <Route
-                  path="/"
-                  element={isAuthenticated ? <Dashboard /> : <Login />}
-                />
+                <Route path="/login" element={<Login />} />
               </Routes>
             </AuthContextProvider>
           </main>
