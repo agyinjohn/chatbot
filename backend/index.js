@@ -5,7 +5,7 @@ const { default: mongoose } = require("mongoose");
 const cookieparser = require("cookie-parser");
 const UserRouter = require("./routes/userRoute");
 
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(cors({ origin: "http://localhost:3001", credentials: true }));
 app.use(express.json());
 app.use("/api", UserRouter);
 // variables

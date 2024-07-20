@@ -1,6 +1,6 @@
 // import { tokens } from "../theme";
 
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Box, IconButton, useTheme } from "@mui/material";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
@@ -9,6 +9,9 @@ import { Link, Navigate } from "react-router-dom";
 import "../Toolbar.css";
 import "../../global/ChatBot.css";
 import { SendOutlined } from "@mui/icons-material";
+import { jwtDecode } from "jwt-decode";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
 
 export default function Dashboard({ setIsAuthenticated }) {
   const [Loading, setLoading] = useState(false);
@@ -16,12 +19,28 @@ export default function Dashboard({ setIsAuthenticated }) {
   const [input, setInput] = useState("");
   const [selected, setSelected] = useState(null);
   const [redirect, setRedirect] = useState(false);
+  const [email, setEmail] = useState("");
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
+  const [Authenticated, setAuthenticated] = useState(false);
+
   function handleSelectedNav(item) {
     setSelected(item);
   }
+
+  useEffect(() => {
+    const token = localStorage.getItem("AuthToken");
+    const user = jwtDecode(token);
+    const currentTime = Date.now() / 1000;
+
+    // console.log(user);
+    // console.log(user.email);
+    setEmail(user.email);
+    if (user.exp < currentTime) {
+      setRedirect(true);
+    }
+  }, []);
 
   function logout() {
     setRedirect(true);
@@ -111,9 +130,15 @@ export default function Dashboard({ setIsAuthenticated }) {
           alignItems="centre"
           justifyContent="space-between"
         >
-          <button className="btn-bar" onClick={logout}>
-            logout
-          </button>
+          <Popup
+            position="bottom center"
+            trigger={<button className="btn-bar">logout</button>}
+          >
+            <div style={{ color: colors.blueAccent[300] }} onClick={logout}>
+              Logout({email})
+            </div>
+          </Popup>
+
           <IconButton onClick={colorMode.toggleColorMode}>
             {theme.palette.mode === "light" ? (
               <LightModeOutlinedIcon />
